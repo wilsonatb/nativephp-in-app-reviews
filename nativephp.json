@@ -1,0 +1,67 @@
+{
+    "name": "nativephp/in-app-reviews",
+    "version": "1.0.0",
+    "description": "In-App Reviews API",
+    "namespace": "InAppReviews",
+    "keywords": [],
+    "category": "utilities",
+    "license": "MIT",
+    "pricing": {
+        "type": "free"
+    },
+    "author": {
+        "name": "Wilson Tovar",
+        "email": "diwdesign.wilson@gmail.com",
+        "url": "https://diwdesign.com"
+    },
+    "homepage": "",
+    "repository": "",
+    "funding": [],
+    "platforms": [
+        "android",
+        "ios"
+    ],
+    "icon": "resources/icon.png",
+    "screenshots": [],
+    "bridge_functions": [
+        {
+            "name": "InAppReviews.RequestReview",
+            "android": "com.nativephp.plugins.in_app_reviews.InAppReviewsFunctions.RequestReview",
+            "ios": "InAppReviewsFunctions.RequestReview",
+            "description": "Launch the in-app review flow"
+        }
+    ],
+    "android": {
+        "min_version": 30,
+        "permissions": [],
+        "repositories": [],
+        "dependencies": {
+            "implementation": []
+        },
+        "activities": [],
+        "services": [],
+        "receivers": [],
+        "providers": []
+    },
+    "ios": {
+        "min_version": "16.0",
+        "permissions": [],
+        "repositories": [],
+        "dependencies": {
+            "swift_packages": [],
+            "pods": []
+        }
+    },
+    "assets": {
+        "android": [],
+        "ios": []
+    },
+    "secrets": [],
+    "events": [
+        "Nativephp\\InAppReviews\\Events\\InAppReviewsCompleted"
+    ],
+    "service_provider": "Nativephp\\InAppReviews\\InAppReviewsServiceProvider",
+    "hooks": {
+        "copy_assets": "nativephp:in-app-reviews:copy-assets"
+    }
+}

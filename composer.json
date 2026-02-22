@@ -1,0 +1,42 @@
+{
+    "name": "nativephp/in-app-reviews",
+    "description": "In-App Reviews API",
+    "type": "nativephp-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Wilson Tovar",
+            "email": "diwdesign.wilson@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "nativephp/mobile": "dev-main"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nativephp\\InAppReviews\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nativephp\\InAppReviews\\InAppReviewsServiceProvider"
+            ]
+        },
+        "nativephp": {
+            "manifest": "nativephp.json"
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.0"
+    },
+    "scripts": {
+        "test": "pest"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
