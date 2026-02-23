@@ -5,9 +5,9 @@ NativePHP plugin for requesting app reviews on Android (Google Play) and iOS (Ap
 ## Installation
 
 ```bash
-composer require nativephp/in-app-reviews
+composer require wilsonatb/nativephp-in-app-reviews
 
-php artisan native:plugin:register nativephp/in-app-reviews
+php artisan native:plugin:register wilsonatb/nativephp-in-app-reviews
 ```
 
 ## Usage (PHP)

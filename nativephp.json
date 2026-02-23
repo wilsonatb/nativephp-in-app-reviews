@@ -1,5 +1,5 @@
 {
-    "name": "nativephp/in-app-reviews",
+    "name": "wilsonatb/nativephp-in-app-reviews",
     "version": "1.0.0",
     "description": "In-App Reviews API",
     "namespace": "InAppReviews",

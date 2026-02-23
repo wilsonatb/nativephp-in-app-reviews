@@ -1,5 +1,5 @@
 {
-    "name": "nativephp/in-app-reviews",
+    "name": "wilsonatb/nativephp-in-app-reviews",
     "description": "In-App Reviews API",
     "type": "nativephp-plugin",
     "license": "MIT",
