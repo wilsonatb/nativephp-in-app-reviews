@@ -85,7 +85,7 @@ Use the `InAppReviews` facade to request app reviews:
 
 **iOS:**
 - Requires app to be published in TestFlight for testing
-- Uses StoreKit's SKStoreReviewController
+- Uses StoreKit's modern AppStore.requestReview API (with fallbacks for older versions)
 - Apple may limit review prompt frequency
 
 ### Best Practices

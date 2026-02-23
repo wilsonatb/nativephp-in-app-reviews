@@ -112,8 +112,8 @@ No additional permissions required. Both Google Play In-App Review and App Store
 - User can rate the app without leaving your app
 
 ### iOS
-- Uses StoreKit's `SKStoreReviewController`
-- Minimum iOS version: 18.0
+- Uses StoreKit's modern AppStore.requestReview API (with fallbacks for older versions)
+- Minimum iOS version: 16.0
 - The review request is managed by iOS
 - Apple may limit how often the prompt appears
 
@@ -144,7 +144,7 @@ No environment variables required.
 ## Support
 
 For issues, questions, or feature requests:
-- **Email:** diwdesing.wilson@gmail.com
+- **Email:** diwdesign.wilson@gmail.com
 - **GitHub Issues:** [Repository Issues Link]
 
 ## License

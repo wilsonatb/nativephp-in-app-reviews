@@ -1,26 +1,34 @@
 import Foundation
+import StoreKit
+import UIKit
 
 enum InAppReviewsFunctions {
 
-    class Execute: BridgeFunction {
+    class RequestReview: BridgeFunction {
         func execute(parameters: [String: Any]) throws -> [String: Any] {
-            // TODO: Implement your native functionality here
-            let option1 = parameters["option1"] as? String ?? ""
 
-            // Example: Return success with data
-            return BridgeResponse.success(data: [
-                "result": "executed",
-                "option1": option1
-            ])
-        }
-    }
+            DispatchQueue.main.async {
+                let activeScene = UIApplication.shared.connectedScenes
+                    .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene
 
-    class GetStatus: BridgeFunction {
-        func execute(parameters: [String: Any]) throws -> [String: Any] {
-            // TODO: Return current status
+                if #available(iOS 16.0, *) {
+                    if let scene = activeScene {
+                        EnvironmentValues().requestReview
+                        AppStore.requestReview(in: scene)
+                    }
+                } else if #available(iOS 14.0, *) {
+                    // Fallback for iOS 14 and 15
+                    if let scene = activeScene {
+                        SKStoreReviewController.requestReview(in: scene)
+                    }
+                } else {
+                    // Fallback for iOS 13 and earlier
+                    SKStoreReviewController.requestReview()
+                }
+            }
+
             return BridgeResponse.success(data: [
-                "status": "ready",
-                "version": "1.0.0"
+                "status": "review_process_started"
             ])
         }
     }
