@@ -80,24 +80,6 @@ async function requestAppReview() {
         - **Android**: Launches Google Play In-App Review flow
         - **iOS**: Requests App Store Review using StoreKit
 
-## Events
-
-- `Nativephp\InAppReviews\Events\InAppReviewsCompleted` - Dispatched when review process completes
-    - Payload: `{ result: string, id: string|null }`
-
-### Listening for Events in Livewire
-
-```php
-use Native\Mobile\Attributes\OnNative;
-use Nativephp\InAppReviews\Events\InAppReviewsCompleted;
-
-#[OnNative(InAppReviewsCompleted::class)]
-public function handleReviewCompleted($data)
-{
-    $this->reviewResult = $data['result'];
-    $this->reviewId = $data['id'];
-}
-```
 
 ## Required Permissions
 
