@@ -5,8 +5,7 @@ namespace Nativephp\InAppReviews\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static mixed execute(array $options = [])
- * @method static object|null getStatus()
+ * @method static object|null requestReview()
  *
  * @see \Nativephp\InAppReviews\InAppReviews
  */
