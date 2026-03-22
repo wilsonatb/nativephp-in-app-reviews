@@ -32,7 +32,7 @@
         }
     ],
     "android": {
-        "min_version": 30,
+        "min_version": 26,
         "permissions": [],
         "repositories": [],
         "dependencies": {
