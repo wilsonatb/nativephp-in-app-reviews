@@ -13,23 +13,24 @@ enum InAppReviewsFunctions {
 
                 if #available(iOS 16.0, *) {
                     if let scene = activeScene {
-                        EnvironmentValues().requestReview
-                        AppStore.requestReview(in: scene)
+                        // iOS 16 requiere async/await.
+                        Task { @MainActor in
+                            try? await AppStore.requestReview(in: scene)
+                        }
                     }
                 } else if #available(iOS 14.0, *) {
-                    // Fallback for iOS 14 and 15
                     if let scene = activeScene {
                         SKStoreReviewController.requestReview(in: scene)
                     }
                 } else {
-                    // Fallback for iOS 13 and earlier
                     SKStoreReviewController.requestReview()
                 }
             }
 
-            return BridgeResponse.success(data: [
+            return [
+                "success": true,
                 "status": "review_process_started"
-            ])
+            ]
         }
     }
 }
