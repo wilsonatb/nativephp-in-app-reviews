@@ -1,6 +1,6 @@
 {
     "name": "wilsonatb/nativephp-in-app-reviews",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "description": "In-App Reviews API",
     "namespace": "InAppReviews",
     "keywords": [],
@@ -21,7 +21,6 @@
         "android",
         "ios"
     ],
-    "icon": "resources/icon.png",
     "screenshots": [],
     "bridge_functions": [
         {
