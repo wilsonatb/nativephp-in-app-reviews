@@ -8,7 +8,6 @@ NativePHP plugin for requesting app reviews on Android (Google Play) and iOS (Ap
 composer require wilsonatb/nativephp-in-app-reviews
 
 php artisan native:plugin:register wilsonatb/nativephp-in-app-reviews
-php artisan vendor:publish --tag=nativephp-plugins-provider
 ```
 
 ## Usage (PHP)
@@ -29,7 +28,6 @@ $result = InAppReviews::requestReview();
 
 ```php
 use Livewire\Component;
-use Native\Mobile\Attributes\OnNative;
 use Nativephp\InAppReviews\Facades\InAppReviews;
 
 class ReviewComponent extends Component
@@ -120,38 +118,6 @@ Tested with:
 - ✅ Inertia + Vue 3
 - ✅ Inertia + React
 
-## Events and Platform Differences
-
-### Android
-- **Event Dispatch:** The plugin dispatches `InAppReviewsCompleted` event when the review flow finishes
-- **Event Payload:** Contains `result` ("completed" or "error") and `id` ("review_flow")
-- **Error Handling:** If the review flow fails, an error event is dispatched with `error` and `errorCode` fields
-
-### iOS
-- **No Completion Callbacks:** iOS StoreKit API does not provide completion callbacks for `AppStore.requestReview(in:)`
-- **No Events Dispatched:** The `InAppReviewsCompleted` event is **NOT** dispatched on iOS
-- **Immediate Response:** The bridge function returns success immediately after requesting the review
-- **Platform Note:** The response includes a `platform: "ios"` field and a note about the limitation
-
-### Listening to Events (PHP)
-
-```php
-use Native\Mobile\Attributes\OnNative;
-use Nativephp\InAppReviews\Events\InAppReviewsCompleted;
-
-#[OnNative(InAppReviewsCompleted::class)]
-public function handleReviewCompleted($data)
-{
-    // $data contains: result, id, error (optional), errorCode (optional)
-    if ($data['result'] === 'completed') {
-        // Review flow completed successfully
-    } else {
-        // Error occurred: $data['error'], $data['errorCode']
-    }
-}
-```
-
-> **Note:** The event is only dispatched on Android. iOS applications should not rely on this event.
 
 ## Environment Variables
 
