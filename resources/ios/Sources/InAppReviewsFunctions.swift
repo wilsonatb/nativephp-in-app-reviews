@@ -2,6 +2,8 @@ import Foundation
 import StoreKit
 import UIKit
 
+// BridgeResponse is globally available from the NativePHP bridge
+
 enum InAppReviewsFunctions {
 
     class RequestReview: BridgeFunction {
@@ -15,7 +17,7 @@ enum InAppReviewsFunctions {
                     if let scene = activeScene {
                         // iOS 16 requiere async/await.
                         Task { @MainActor in
-                            try? await AppStore.requestReview(in: scene)
+                            try? await AppStore.requestReview(in: scene) // Errors ignored; iOS provides no completion callbacks
                         }
                     }
                 } else if #available(iOS 14.0, *) {
@@ -27,10 +29,13 @@ enum InAppReviewsFunctions {
                 }
             }
 
-            return [
-                "success": true,
-                "status": "review_process_started"
-            ]
+            // iOS no provee callbacks para saber cuándo termina la revisión
+            // El evento InAppReviewsCompleted solo se dispara en Android
+            return BridgeResponse.success(data: [
+                "status": "review_process_started",
+                "platform": "ios",
+                "note": "iOS does not provide completion callbacks for review flow"
+            ])
         }
     }
 }

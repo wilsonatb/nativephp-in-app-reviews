@@ -5,9 +5,10 @@ NativePHP plugin for requesting app reviews on Android (Google Play) and iOS (Ap
 ### Installation
 
 ```bash
-composer require nativephp/in-app-reviews
+composer require wilsonatb/nativephp-in-app-reviews
 
-php artisan native:plugin:register nativephp/in-app-reviews
+php artisan native:plugin:register wilsonatb/nativephp-in-app-reviews
+php artisan vendor:publish --tag=nativephp-plugins-provider
 ```
 
 ### PHP Usage (Livewire/Blade)
@@ -38,8 +39,13 @@ Use the `InAppReviews` facade to request app reviews:
 
 ### Events
 
-- `InAppReviewsCompleted`: Dispatched when review process completes
+- `InAppReviewsCompleted`: Dispatched when review process completes (Android only)
 - Listen with `#[OnNative(InAppReviewsCompleted::class)]`
+
+**Platform Differences:**
+- **Android:** The event is dispatched when the review flow completes (success or error)
+- **iOS:** The event is **NOT** dispatched - StoreKit API does not provide completion callbacks
+- **Event Data:** Contains `result` ("completed" or "error"), `id` ("review_flow"), and optional `error`, `errorCode` fields
 
 @verbatim
     <code-snippet name="Listening for InAppReviews Events" lang="php">
@@ -50,8 +56,15 @@ Use the `InAppReviews` facade to request app reviews:
         public function handleReviewCompleted($data)
         {
         // Handle the completed review
-        $result = $data['result'];
-        $id = $data['id'];
+        $result = $data['result'];  // "completed" or "error"
+        $id = $data['id'];          // "review_flow"
+
+        if ($result === 'completed') {
+            // Review flow completed successfully (Android only)
+        } else {
+            // Error occurred - check $data['error'] and $data['errorCode']
+            // Note: iOS does not dispatch this event
+        }
         }
     </code-snippet>
 @endverbatim
@@ -82,11 +95,13 @@ Use the `InAppReviews` facade to request app reviews:
 - Requires app to be published in Google Play (internal/alpha/beta track)
 - Uses Google Play In-App Review API
 - User can rate without leaving the app
+- **Event support:** Dispatches `InAppReviewsCompleted` event when review flow finishes
 
 **iOS:**
 - Requires app to be published in TestFlight for testing
 - Uses StoreKit's modern AppStore.requestReview API (with fallbacks for older versions)
 - Apple may limit review prompt frequency
+- **No completion callbacks:** The `InAppReviewsCompleted` event is **NOT** dispatched on iOS
 
 ### Best Practices
 

@@ -25,7 +25,7 @@ describe('Plugin Manifest', function () {
         $manifest = json_decode(file_get_contents($this->manifestPath), true);
 
         expect($manifest)->toHaveKeys(['name', 'namespace', 'bridge_functions']);
-        expect($manifest['name'])->toBe('nativephp/in-app-reviews');
+        expect($manifest['name'])->toBe('wilsonatb/nativephp-in-app-reviews');
         expect($manifest['namespace'])->toBe('InAppReviews');
     });
 
@@ -36,7 +36,7 @@ describe('Plugin Manifest', function () {
 
         foreach ($manifest['bridge_functions'] as $function) {
             expect($function)->toHaveKeys(['name']);
-            expect($function)->toHaveAnyKeys(['android', 'ios']);
+            expect(array_intersect(['android', 'ios'], array_keys($function)))->not->toBeEmpty();
         }
     });
 
@@ -63,7 +63,7 @@ describe('Plugin Manifest', function () {
 
 describe('Native Code', function () {
     it('has Android Kotlin file', function () {
-        $kotlinFile = $this->pluginPath . '/resources/android/InAppReviewsFunctions.kt';
+        $kotlinFile = $this->pluginPath . '/resources/android/src/InAppReviewsFunctions.kt';
 
         expect(file_exists($kotlinFile))->toBeTrue();
 
@@ -74,7 +74,7 @@ describe('Native Code', function () {
     });
 
     it('has iOS Swift file', function () {
-        $swiftFile = $this->pluginPath . '/resources/ios/InAppReviewsFunctions.swift';
+        $swiftFile = $this->pluginPath . '/resources/ios/Sources/InAppReviewsFunctions.swift';
 
         expect(file_exists($swiftFile))->toBeTrue();
 
@@ -86,8 +86,8 @@ describe('Native Code', function () {
     it('has matching bridge function classes in native code', function () {
         $manifest = json_decode(file_get_contents($this->manifestPath), true);
 
-        $kotlinFile = $this->pluginPath . '/resources/android/InAppReviewsFunctions.kt';
-        $swiftFile = $this->pluginPath . '/resources/ios/InAppReviewsFunctions.swift';
+        $kotlinFile = $this->pluginPath . '/resources/android/src/InAppReviewsFunctions.kt';
+        $swiftFile = $this->pluginPath . '/resources/ios/Sources/InAppReviewsFunctions.swift';
 
         $kotlinContent = file_get_contents($kotlinFile);
         $swiftContent = file_get_contents($swiftFile);
