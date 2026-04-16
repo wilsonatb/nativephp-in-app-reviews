@@ -1,15 +1,11 @@
 # InAppReviews Plugin for NativePHP Mobile
 
- [![Downloads](https://img.shields.io/packagist/dt/wilsonatb/nativephp-in-app-reviews.svg?color=red)](https://packagist.org/packages/wilsonatb/nativephp-in-app-reviews)
-
 NativePHP plugin for requesting app reviews on Android (Google Play) and iOS (App Store).
 
 ## Screenshots
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/9f838af9-24c7-451b-8702-3999a2274f46" height="500" alt="iOS In-App Review Prompt">
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://github.com/user-attachments/assets/f81c2523-4b11-4b6d-be5b-3eb1118e06fd" height="480" alt="Android In-App Review Prompt">
+  <img src="https://github.com/user-attachments/assets/9f838af9-24c7-451b-8702-3999a2274f46" width="200" alt="iOS In-App Review Prompt">
 </p>
 
 ## Installation
