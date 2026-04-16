@@ -4,8 +4,9 @@ NativePHP plugin for requesting app reviews on Android (Google Play) and iOS (Ap
 
 ## Screenshots
 
-<img src="https://github.com/user-attachments/assets/9d9d675c-1c88-4103-a92d-c36804a57c26" height="550" alt="iOS In-App Review Prompt">
-
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/9d9d675c-1c88-4103-a92d-c36804a57c26" height="400" alt="iOS In-App Review Prompt">
+</p>
 
 ## Installation
 
