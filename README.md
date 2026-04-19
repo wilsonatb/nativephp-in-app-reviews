@@ -2,6 +2,10 @@
 
 NativePHP plugin for requesting app reviews on Android (Google Play) and iOS (App Store).
 
+![PHP Version](https://img.shields.io/packagist/php-v/wilsonatb/nativephp-in-app-reviews.svg?color=blue)
+[![Downloads](https://img.shields.io/packagist/dt/wilsonatb/nativephp-in-app-reviews.svg?color=red)](https://packagist.org/packages/wilsonatb/nativephp-in-app-reviews)
+![License](https://img.shields.io/github/license/wilsonatb/nativephp-in-app-reviews.svg?color=green)
+
 ## Screenshots
 
 <p align="center">
